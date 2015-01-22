@@ -5,13 +5,20 @@
 
   <template>
     <style>
+      :host > video-screen {
+        width: 600px;
+        height: 400px;
+      }
     </style>
-    <video-screen></video-screen>
+    <video-screen>
+      <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+    </video-screen>
   </template>
 
   <script>
 
     Polymer({
+
 
     });
 

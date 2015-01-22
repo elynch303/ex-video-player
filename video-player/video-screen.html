@@ -7,11 +7,15 @@
     <style>
       :host {
         display: inline-block;
-        width: 600px;
-        height: 600px;
+        width: 300px;
+        height: 200px;
         position: relative;
       }
-      :host video-play-button, :host video {
+      :host > video {
+        border: 1px solid black;
+        box-sizing: border-box;
+      }
+      :host > video-play-button, :host > video {
         display: block;
         position: absolute;
         width: 100%;
@@ -19,18 +23,41 @@
         top: 0;
         left: 0;
       }
-      :host video-play-button {
+      :host > video-play-button {
         z-index: 1;
       }
     </style>
-    <video-play-button></video-play-button>
-    <video></video>
+    <video-play-button hidden?="{{hiddenPlayButton}}" on-click="{{playVideo}}"></video-play-button>
+    <video on-click="{{pauseVideo}}">
+      <template repeat="{{item in sources}}">
+        <source src="{{item.src}}" type="{{item.type}}">
+      </template>
+    </video>
+    <content id="content" select="source"></content>
   </template>
 
   <script>
 
     Polymer({
-
+      hiddenPlayButton: false,
+      video: null,
+      sources: [],
+      ready: function() {
+        this.sources = [].slice.call(this.$.content.getDistributedNodes());
+        this.video = this.shadowRoot.querySelector('video');
+        this.video.onended = this.endedVideo.bind(this);
+      },
+      playVideo: function() {
+        this.hiddenPlayButton = true;
+        this.video.play();
+      },
+      pauseVideo: function() {
+        this.video.pause();
+        this.hiddenPlayButton = false;
+      },
+      endedVideo: function() {
+        this.hiddenPlayButton = false;
+      }
     });
 
   </script>
