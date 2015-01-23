@@ -55,6 +55,7 @@
         this.video.addEventListener('play', this.playClick.bind(this), true);
         this.video.addEventListener('pause', this.pauseClick.bind(this), true);
         this.video.addEventListener("timeupdate", this.timeupdate.bind(this), true);
+        this.video.addEventListener("progress", this.progress.bind(this), true);
       },
       togglePlayButton: function () {
         this.hiddenPlayButton = this.hiddenPlayButton ? true : false;
@@ -71,8 +72,15 @@
         this.hiddenPlayButton = false;
       },
       timeupdate: function() {
+        if(this.video.duration <= 0) return;
         var value = (100 / this.video.duration) * this.video.currentTime;
-        this.fire('core-signal', { name: 'timeupdate', data: value});
+        this.fire('core-signal', { name: 'timeupdate', data: value });
+      },
+      progress: function() {
+        if(this.video.duration <= 0 || this.video.buffered.length == 0) return;
+        var buffered_end = this.video.buffered.end(this.video.buffered.length - 1);
+        var progress_amount = (buffered_end / this.video.duration) * 100;
+        this.fire('core-signal', { name: 'progress-amount', data: progress_amount });
       },
       fullscreen: function() {
         if (this.video.requestFullscreen) {

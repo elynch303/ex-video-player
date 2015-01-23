@@ -21,6 +21,7 @@
     <core-signals on-core-signal-play="{{play}}"></core-signals>
     <core-signals on-core-signal-pause="{{pause}}"></core-signals>
     <core-signals on-core-signal-timeupdate="{{timeupdate}}"></core-signals>
+    <core-signals on-core-signal-progress-amount="{{progress_amount}}"></core-signals>
   </template>
 
   <script>
@@ -40,6 +41,9 @@
       },
       timeupdate: function(e, detail, sender) {
         this.$.slider.value = detail;
+      },
+      progress_amount: function(e, detail, sender) {
+        this.$.slider.secondaryProgress = detail;
       },
       fullscreen: function() {
         this.fire('core-signal', { name: "fullscreen" });
