@@ -1,19 +1,22 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="video-play-button.html">
+<link rel="import" href="../bower_components/core-signals/core-signals.html">
 
-<polymer-element name="video-screen">
+<polymer-element name="video-screen"
+
+                 on-screen-pause="{{pause}}"
+                 on-screen-fullscreen="{{fullscreen}}">
 
   <template>
     <style>
       :host {
-        display: inline-block;
-        width: 300px;
-        height: 200px;
+        display: block;
+        width: 320px;
+        height: 240px;
         position: relative;
       }
       :host > video {
-        border: 1px solid black;
-        box-sizing: border-box;
+        background-color: black;
       }
       :host > video-play-button, :host > video {
         display: block;
@@ -27,13 +30,16 @@
         z-index: 1;
       }
     </style>
-    <video-play-button hidden?="{{hiddenPlayButton}}" on-click="{{playVideo}}"></video-play-button>
-    <video on-click="{{pauseVideo}}">
+    <video-play-button hidden?="{{hiddenPlayButton}}" on-click="{{playClick}}"></video-play-button>
+    <video on-click="{{pauseClick}}">
       <template repeat="{{item in sources}}">
         <source src="{{item.src}}" type="{{item.type}}">
       </template>
     </video>
     <content id="content" select="source"></content>
+    <core-signals on-core-signal-play="{{play}}"></core-signals>
+    <core-signals on-core-signal-pause="{{pause}}"></core-signals>
+    <core-signals on-core-signal-fullscreen="{{fullscreen}}"></core-signals>
   </template>
 
   <script>
@@ -45,18 +51,32 @@
       ready: function() {
         this.sources = [].slice.call(this.$.content.getDistributedNodes());
         this.video = this.shadowRoot.querySelector('video');
-        this.video.onended = this.endedVideo.bind(this);
+        this.video.onended = this.ended.bind(this);
+        this.video.addEventListener('play', this.playClick.bind(this), true);
+        this.video.addEventListener('pause', this.pauseClick.bind(this), true);
       },
-      playVideo: function() {
-        this.hiddenPlayButton = true;
-        this.video.play();
+      togglePlayButton: function () {
+        this.hiddenPlayButton = this.hiddenPlayButton ? true : false;
       },
-      pauseVideo: function() {
-        this.video.pause();
+      playClick: function () {
+        this.fire('core-signal', { name: "play" });
+      },
+      pauseClick: function() {
+        this.fire('core-signal', { name: "pause" });
+      },
+      play: function() { this.video.play();  this.hiddenPlayButton = true; },
+      pause: function() { this.video.pause(); this.hiddenPlayButton = false;},
+      ended: function() {
         this.hiddenPlayButton = false;
       },
-      endedVideo: function() {
-        this.hiddenPlayButton = false;
+      fullscreen: function() {
+        if (this.video.requestFullscreen) {
+          this.video.requestFullscreen();
+        } else if (this.video.mozRequestFullScreen) {
+          this.video.mozRequestFullScreen(); // Firefox
+        } else if (this.video.webkitRequestFullscreen) {
+          this.video.webkitRequestFullscreen(); // Chrome and Safari
+        }
       }
     });
 

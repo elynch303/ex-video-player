@@ -1,0 +1,47 @@
+<link rel="import" href="../bower_components/core-icons/core-icons.html">
+<link rel="import" href="../bower_components/core-icons/av-icons.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-slider/paper-slider.html">
+<link rel="import" href="../bower_components/core-signals/core-signals.html">
+
+<polymer-element name="video-controls">
+
+  <template>
+    <style>
+      :host {
+        display: block;
+        /*height: 50px;*/
+      }
+    </style>
+    <div horizontal layout center>
+      <paper-icon-button id="play" icon="av:play-arrow" on-click="{{playClick}}"></paper-icon-button>
+      <paper-slider flex></paper-slider>
+      <paper-icon-button icon="fullscreen" on-click="{{fullscreen}}"></paper-icon-button>
+    </div>
+    <core-signals on-core-signal-play="{{play}}"></core-signals>
+    <core-signals on-core-signal-pause="{{pause}}"></core-signals>
+  </template>
+
+  <script>
+
+    Polymer({
+      toggedPlayButton: false,
+      playClick: function(e, details, sender) {
+        !this.toggedPlayButton ? this.fire('core-signal', { name: "play" }) : this.fire('core-signal', { name: "pause" });
+      },
+      play: function() {
+        this.toggedPlayButton = true;
+        this.$.play.icon = "av:pause";
+      },
+      pause: function() {
+        this.toggedPlayButton = false;
+        this.$.play.icon = "av:play-arrow";
+      },
+      fullscreen: function() {
+        this.fire('core-signal', { name: "fullscreen" });
+      }
+    });
+
+  </script>
+
+</polymer-element>

@@ -1,24 +1,40 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="video-screen.html">
+<link rel="import" href="video-controls.html">
 
-<polymer-element name="video-player">
+<polymer-element name="video-player" >
 
   <template>
     <style>
-      :host > video-screen {
-        width: 600px;
-        height: 400px;
+      :host {
+        display: inline-block;
+        /*border: 1px solid black;*/
+        /*box-sizing: border-box;*/
       }
+      .WXGA {
+        width: 1280px;
+        height: 720px;
+      }
+      .SVGA {
+        width: 800px;
+        height: 600px;
+      }
+
     </style>
-    <video-screen>
+    <video-screen class="">
       <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
     </video-screen>
+    <video-controls></video-controls>
   </template>
 
   <script>
 
     Polymer({
 
+      ready: function() {
+        this.screen =  this.shadowRoot.querySelector('video-screen');
+        this.controls =  this.shadowRoot.querySelector('video-controls');
+      }
 
     });
 
