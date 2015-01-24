@@ -15,7 +15,7 @@
     </style>
     <div horizontal layout center>
       <paper-icon-button id="play" icon="av:play-arrow" on-click="{{playClick}}"></paper-icon-button>
-      <paper-slider id="slider" flex></paper-slider>
+      <paper-slider id="slider" on-change="{{sliderChange}}" flex></paper-slider>
       <paper-icon-button icon="fullscreen" on-click="{{fullscreen}}"></paper-icon-button>
     </div>
     <core-signals on-core-signal-play="{{play}}"></core-signals>
@@ -27,16 +27,19 @@
   <script>
 
     Polymer({
-      toggedPlayButton: false,
-      playClick: function(e, details, sender) {
-        !this.toggedPlayButton ? this.fire('core-signal', { name: "play" }) : this.fire('core-signal', { name: "pause" });
+      togged: false,
+      playClick: function() {
+        !this.togged ? this.fire('core-signal', { name: "play" }) : this.fire('core-signal', { name: "pause" });
+      },
+      sliderChange: function(e, detail, sender) {
+        this.fire('core-signal', { name: 'change', data: sender.immediateValue });
       },
       play: function() {
-        this.toggedPlayButton = true;
+        this.togged = true;
         this.$.play.icon = "av:pause";
       },
       pause: function() {
-        this.toggedPlayButton = false;
+        this.togged = false;
         this.$.play.icon = "av:play-arrow";
       },
       timeupdate: function(e, detail, sender) {
