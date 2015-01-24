@@ -1,0 +1,50 @@
+<link rel="import" href="../bower_components/core-icons/av-icons.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-dropdown/paper-dropdown.html">
+<link rel="import" href="../bower_components/paper-slider/paper-slider.html">
+<link rel="import" href="../bower_components/core-signals/core-signals.html">
+<link rel="import" href="../bower_components/core-localstorage/core-localstorage.html">
+
+<polymer-element name="video-volume" relative>
+  <template>
+    <style>
+      .open-volume {
+        bottom: 22px;
+        right: 20px;
+        height: 40px;
+        width: 100px;
+      }
+      .open-volume > div {
+        height: 100%;
+      }
+    </style>
+    <paper-icon-button icon="av:volume-up" on-tap="{{toggle}}" noink>
+    </paper-icon-button>
+    <paper-dropdown id="dropdown" class="open-volume" valign="bottom" halign="right">
+      <div horizontal layout center>
+        <paper-slider id="slider" on-change="{{sliderChange}}" flex></paper-slider>
+      </div>
+    </paper-dropdown>
+    <core-signals on-core-signal-canplay="{{canplay}}"></core-signals>
+    <core-localstorage name="volume" value="{{volume}}" on-core-localstorage-load="{{load}}"></core-localstorage>
+  </template>
+  <script>
+    Polymer({
+      load: function() {
+        this.volume = this.volume || 1;
+        this.$.slider.value = this.volume;
+        this.fire('core-signal', { name: 'volume', data: (this.volume / 100) });
+      },
+      toggle: function() {
+        this.$.dropdown.toggle();
+      },
+      sliderChange: function(e, detail, sender) {
+        this.volume = sender.immediateValue;
+        this.fire('core-signal', { name: 'volume', data: (this.volume / 100) });
+      },
+      canplay: function(e, detail, sender) {
+        this.fire('core-signal', { name: 'volume', data: (this.volume / 100) });
+      }
+    });
+  </script>
+</polymer-element>

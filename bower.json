@@ -9,6 +9,7 @@
   "dependencies": {
     "polymer": "Polymer/polymer#latest",
     "paper-elements": "Polymer/paper-elements#latest",
-    "core-signals": "Polymer/core-signals#master"
+    "core-signals": "Polymer/core-signals#master",
+    "core-localstorage": "Polymer/core-localstorage#master"
   }
 }

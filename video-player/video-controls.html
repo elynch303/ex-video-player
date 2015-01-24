@@ -4,6 +4,8 @@
 <link rel="import" href="../bower_components/paper-slider/paper-slider.html">
 <link rel="import" href="../bower_components/core-signals/core-signals.html">
 
+<link rel="import" href="video-volume.html">
+
 <polymer-element name="video-controls">
 
   <template>
@@ -16,6 +18,7 @@
     <div horizontal layout center>
       <paper-icon-button id="play" icon="av:play-arrow" on-click="{{playClick}}"></paper-icon-button>
       <paper-slider id="slider" on-change="{{sliderChange}}" flex></paper-slider>
+      <video-volume></video-volume>
       <paper-icon-button icon="fullscreen" on-click="{{fullscreen}}"></paper-icon-button>
     </div>
     <core-signals on-core-signal-play="{{play}}"></core-signals>
