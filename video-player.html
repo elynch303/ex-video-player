@@ -23,17 +23,20 @@
 
     </style>
     <video-screen class="">
-      <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
-      <!--<source src="../oceans.mp4" type="video/mp4"></source>-->
+      <template repeat="{{item in sources}}">
+        <source src="{{item.src}}" type="{{item.type}}">
+      </template>
     </video-screen>
     <video-controls></video-controls>
+    <content id="content" select="source"></content>
   </template>
 
   <script>
 
     Polymer({
-
+      sources: [],
       ready: function() {
+        this.sources = [].slice.call(this.$.content.getDistributedNodes());
         this.screen =  this.shadowRoot.querySelector('video-screen');
         this.controls =  this.shadowRoot.querySelector('video-controls');
       }

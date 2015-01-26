@@ -60,6 +60,12 @@
         this.video.addEventListener("timeupdate", this.timeupdate.bind(this), true);
         this.video.addEventListener("progress", this.progress.bind(this), true);
         this.video.addEventListener("canplay", this.canplay.bind(this), true);
+        this.onMutation(this, this.childrenUpdated);
+      },
+      childrenUpdated: function(observer, mutations) {
+        this.sources = [].slice.call(this.$.content.getDistributedNodes());
+        // Monitor again.
+        this.onMutation(this, this.childrenUpdated);
       },
       togglePlayButton: function () {
         this.hiddenPlayButton = this.hiddenPlayButton ? true : false;
