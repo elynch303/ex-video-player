@@ -7,9 +7,14 @@
   "author": "Paweł Łaski <zniwus@gmail.com>",
   "private": true,
   "dependencies": {
+    "webcomponentsjs": "webcomponents/webcomponentsjs#master",
     "polymer": "Polymer/polymer#latest",
     "paper-elements": "Polymer/paper-elements#latest",
     "core-signals": "Polymer/core-signals#master",
-    "core-localstorage": "Polymer/core-localstorage#master"
+    "core-localstorage": "Polymer/core-localstorage#master",
+    "paper-icon-button": "Polymer/paper-icon-button#master",
+    "paper-slider": "Polymer/paper-slider#master",
+    "paper-dropdown": "Polymer/paper-dropdown#master",
+    "paper-fab": "Polymer/paper-fab#master"
   }
 }
