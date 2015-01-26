@@ -33,9 +33,7 @@
     </style>
     <video-play-button hidden?="{{hiddenPlayButton}}" on-click="{{playClick}}"></video-play-button>
     <video id="video" on-click="{{pauseClick}}">
-      <template repeat="{{item in sources}}">
-        <source src="{{item.src}}" type="{{item.type}}">
-      </template>
+      <content></content>
     </video>
     <content id="content" select="source"></content>
     <core-signals on-core-signal-play="{{play}}"></core-signals>
@@ -50,9 +48,7 @@
     Polymer({
       hiddenPlayButton: false,
       video: null,
-      sources: [],
       ready: function() {
-        this.sources = [].slice.call(this.$.content.getDistributedNodes());
         this.video = this.$.video;
         this.video.onended = this.ended.bind(this);
         this.video.addEventListener('play', this.playClick.bind(this), true);
