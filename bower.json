@@ -15,6 +15,7 @@
     "paper-icon-button": "Polymer/paper-icon-button#master",
     "paper-slider": "Polymer/paper-slider#master",
     "paper-dropdown": "Polymer/paper-dropdown#master",
-    "paper-fab": "Polymer/paper-fab#master"
+    "paper-fab": "Polymer/paper-fab#master",
+    "core-tooltip": "Polymer/core-tooltip#master"
   }
 }
