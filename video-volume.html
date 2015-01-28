@@ -10,7 +10,7 @@
     <style>
       .open-volume {
         bottom: 22px;
-        right: 20px;
+        left: 20px;
         height: 40px;
         width: 100px;
       }
@@ -20,7 +20,7 @@
     </style>
     <paper-icon-button id="button" icon="av:volume-up" on-tap="{{toggle}}" noink>
     </paper-icon-button>
-    <paper-dropdown id="dropdown" class="open-volume" valign="bottom" halign="right">
+    <paper-dropdown id="dropdown" class="open-volume" valign="bottom" halign="left">
       <div horizontal layout center>
         <paper-slider id="slider" on-change="{{sliderChange}}" flex></paper-slider>
       </div>
