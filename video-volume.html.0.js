@@ -27,5 +27,8 @@ Polymer('video-volume', {
   },
   canplay: function(e, detail, sender) {
     this.volumeChanged();
+  },
+  volumechange: function(e, detail, sender) {
+    this.volume = detail;
   }
 });

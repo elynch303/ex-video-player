@@ -26,6 +26,7 @@
       </div>
     </paper-dropdown>
     <core-signals on-core-signal-canplay="{{canplay}}"></core-signals>
+    <core-signals on-core-signal-volumechange="{{volumechange}}"></core-signals>
     <core-localstorage name="volume" value="{{volume}}" on-core-localstorage-load="{{load}}"></core-localstorage>
   </template>
 

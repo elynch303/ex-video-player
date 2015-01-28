@@ -11,6 +11,7 @@ Polymer('video-screen', {
     this.video.addEventListener("timeupdate", this.timeupdate.bind(this), true);
     this.video.addEventListener("progress", this.progress.bind(this), true);
     this.video.addEventListener("canplay", this.canplay.bind(this), true);
+    this.video.addEventListener("volumechange", this.volumechange.bind(this), true);
     this.onMutation(this, this.childrenUpdated);
   },
   childrenUpdated: function(observer, mutations) {
@@ -43,6 +44,13 @@ Polymer('video-screen', {
   },
   canplay: function() {
     this.fire('core-signal', { name: 'canplay' });
+  },
+  volumechange: function() {
+    if(this.video.muted) {
+      this.fire('core-signal', { name: 'volumechange', data: 0 });
+      this.video.muted = false;
+    }
+    else this.fire('core-signal', { name: 'volumechange', data: this.video.volume*100 });
   },
   change: function(e, detail, sender) {
     if(isNaN(this.video.duration)) return;
