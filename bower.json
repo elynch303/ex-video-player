@@ -17,6 +17,7 @@
     "paper-dropdown": "Polymer/paper-dropdown#master",
     "paper-fab": "Polymer/paper-fab#master",
     "core-tooltip": "Polymer/core-tooltip#master",
-    "paper-spinner": "Polymer/paper-spinner#master"
+    "paper-spinner": "Polymer/paper-spinner#master",
+    "polymer-keydown": "dmytroyarmak/polymer-keydown#master"
   }
 }
