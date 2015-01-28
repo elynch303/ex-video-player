@@ -1,4 +1,4 @@
-<link rel="import" href="../core-icons/core-icons.html">
+<html><head><link rel="import" href="../core-icons/core-icons.html">
 <link rel="import" href="../core-icons/av-icons.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../paper-slider/paper-slider.html">
@@ -6,13 +6,12 @@
 
 <link rel="import" href="video-volume.html">
 
-<polymer-element name="video-controls">
+</head><body><polymer-element name="video-controls">
 
   <template>
     <style>
       :host {
         display: block;
-        /*height: 50px;*/
       }
     </style>
     <div horizontal layout center>
@@ -27,35 +26,6 @@
     <core-signals on-core-signal-progress-amount="{{progress_amount}}"></core-signals>
   </template>
 
-  <script>
+  <script src="video-controls.html.0.js"></script>
 
-    Polymer({
-      togged: false,
-      playClick: function() {
-        !this.togged ? this.fire('core-signal', { name: "play" }) : this.fire('core-signal', { name: "pause" });
-      },
-      sliderChange: function(e, detail, sender) {
-        this.fire('core-signal', { name: 'change', data: sender.immediateValue });
-      },
-      play: function() {
-        this.togged = true;
-        this.$.play.icon = "av:pause";
-      },
-      pause: function() {
-        this.togged = false;
-        this.$.play.icon = "av:play-arrow";
-      },
-      timeupdate: function(e, detail, sender) {
-        this.$.slider.value = detail;
-      },
-      progress_amount: function(e, detail, sender) {
-        this.$.slider.secondaryProgress = detail;
-      },
-      fullscreen: function() {
-        this.fire('core-signal', { name: "fullscreen" });
-      }
-    });
-
-  </script>
-
-</polymer-element>
+</polymer-element></body></html>

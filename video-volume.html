@@ -1,11 +1,11 @@
-<link rel="import" href="../core-icons/av-icons.html">
+<html><head><link rel="import" href="../core-icons/av-icons.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../paper-dropdown/paper-dropdown.html">
 <link rel="import" href="../paper-slider/paper-slider.html">
 <link rel="import" href="../core-signals/core-signals.html">
 <link rel="import" href="../core-localstorage/core-localstorage.html">
 
-<polymer-element name="video-volume" relative>
+</head><body><polymer-element name="video-volume" relative>
   <template>
     <style>
       .open-volume {
@@ -22,29 +22,11 @@
     </paper-icon-button>
     <paper-dropdown id="dropdown" class="open-volume" valign="bottom" halign="right">
       <div horizontal layout center>
-        <paper-slider id="slider" on-change="{{sliderChange}}" flex></paper-slider>
+        <paper-slider id="slider" on-change="{{sliderChange}}" flex=""></paper-slider>
       </div>
     </paper-dropdown>
     <core-signals on-core-signal-canplay="{{canplay}}"></core-signals>
     <core-localstorage name="volume" value="{{volume}}" on-core-localstorage-load="{{load}}"></core-localstorage>
   </template>
-  <script>
-    Polymer({
-      load: function() {
-        this.volume = this.volume || 1;
-        this.$.slider.value = this.volume;
-        this.fire('core-signal', { name: 'volume', data: (this.volume / 100) });
-      },
-      toggle: function() {
-        this.$.dropdown.toggle();
-      },
-      sliderChange: function(e, detail, sender) {
-        this.volume = sender.immediateValue;
-        this.fire('core-signal', { name: 'volume', data: (this.volume / 100) });
-      },
-      canplay: function(e, detail, sender) {
-        this.fire('core-signal', { name: 'volume', data: (this.volume / 100) });
-      }
-    });
-  </script>
-</polymer-element>
+  <script src="video-volume.html.0.js"></script>
+</polymer-element></body></html>

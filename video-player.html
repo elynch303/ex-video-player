@@ -1,28 +1,17 @@
-<link rel="import" href="../polymer/polymer.html">
+<html><head><link rel="import" href="../polymer/polymer.html">
 
 <link rel="import" href="video-screen.html">
 <link rel="import" href="video-controls.html">
 
-<polymer-element name="video-player" >
+</head><body><polymer-element name="video-player">
 
   <template>
     <style>
       :host {
         display: inline-block;
-        /*border: 1px solid black;*/
-        /*box-sizing: border-box;*/
       }
-      .WXGA {
-        width: 1280px;
-        height: 720px;
-      }
-      .SVGA {
-        width: 800px;
-        height: 600px;
-      }
-
     </style>
-    <video-screen class="">
+    <video-screen>
       <template repeat="{{item in sources}}">
         <source src="{{item.src}}" type="{{item.type}}">
       </template>
@@ -31,18 +20,6 @@
     <content id="content" select="source"></content>
   </template>
 
-  <script>
+  <script src="video-player.html.0.js"></script>
 
-    Polymer({
-      sources: [],
-      ready: function() {
-        this.sources = [].slice.call(this.$.content.getDistributedNodes());
-        this.screen =  this.shadowRoot.querySelector('video-screen');
-        this.controls =  this.shadowRoot.querySelector('video-controls');
-      }
-
-    });
-
-  </script>
-
-</polymer-element>
+</polymer-element></body></html>
