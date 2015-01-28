@@ -2,6 +2,7 @@
 <link rel="import" href="../core-signals/core-signals.html">
 
 <link rel="import" href="video-play-button.html">
+<link rel="import" href="video-waiting-screen.html">
 
 </head><body><polymer-element name="video-screen" on-screen-pause="{{pause}}" on-screen-fullscreen="{{fullscreen}}">
 
@@ -16,7 +17,7 @@
       :host > video {
         background-color: black;
       }
-      :host > video-play-button, :host > video {
+      :host > video-play-button, :host > video-waiting-screen, :host > video {
         display: block;
         position: absolute;
         width: 100%;
@@ -24,11 +25,15 @@
         top: 0;
         left: 0;
       }
-      :host > video-play-button {
+      :host > video-waiting-screen {
         z-index: 1;
+      }
+      :host > video-play-button {
+        z-index: 2;
       }
     </style>
     <video-play-button hidden?="{{hiddenPlayButton}}" on-click="{{playClick}}"></video-play-button>
+    <video-waiting-screen hidden?="{{hiddenWaitingScreen}}"></video-waiting-screen>
     <video id="video" on-click="{{pauseClick}}">
       <template repeat="{{item in sources}}">
         <source src="{{item.src}}" type="{{item.type}}">

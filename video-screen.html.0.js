@@ -1,5 +1,6 @@
 Polymer('video-screen', {
   hiddenPlayButton: false,
+  hiddenWaitingScreen: true,
   video: null,
   sources: [],
   ready: function() {
@@ -12,6 +13,7 @@ Polymer('video-screen', {
     this.video.addEventListener("progress", this.progress.bind(this), true);
     this.video.addEventListener("canplay", this.canplay.bind(this), true);
     this.video.addEventListener("volumechange", this.volumechange.bind(this), true);
+    this.video.addEventListener("canplaythrough", this.canplaythrough.bind(this), true);
     this.onMutation(this, this.childrenUpdated);
   },
   childrenUpdated: function(observer, mutations) {
@@ -37,6 +39,7 @@ Polymer('video-screen', {
     this.fire('core-signal', { name: 'timeupdate', data: value });
   },
   progress: function() {
+    if(this.video.readyState == 4) this.hiddenWaitingScreen = true; else this.hiddenWaitingScreen = false;
     if(this.video.duration <= 0 || this.video.buffered.length == 0) return;
     var buffered_end = this.video.buffered.end(this.video.buffered.length - 1);
     var progress_amount = (buffered_end / this.video.duration) * 100;
@@ -68,6 +71,9 @@ Polymer('video-screen', {
   },
   volume: function(e, detail, sender) {
     this.video.volume = detail
+  },
+  canplaythrough: function() {
+    this.hiddenWaitingScreen = true;
   }
 });
 

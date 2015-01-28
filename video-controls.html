@@ -3,6 +3,7 @@
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../paper-slider/paper-slider.html">
 <link rel="import" href="../core-signals/core-signals.html">
+<link rel="import" href="../core-tooltip/core-tooltip.html">
 
 <link rel="import" href="video-volume.html">
 
@@ -13,12 +14,21 @@
       :host {
         display: block;
       }
+      :host core-tooltip /deep/ .core-tooltip.top {
+        color: black;
+        background-color: white;
+      }
+      :host core-tooltip /deep/ .core-tooltip.top::after {
+        border-top-color: white;
+      }
     </style>
     <div horizontal layout center>
       <paper-icon-button id="play" icon="av:play-arrow" on-click="{{playClick}}"></paper-icon-button>
       <paper-slider id="slider" on-change="{{sliderChange}}" flex></paper-slider>
       <video-volume></video-volume>
-      <paper-icon-button icon="fullscreen" on-click="{{fullscreen}}"></paper-icon-button>
+      <core-tooltip label="Fullscreen" position="top">
+        <paper-icon-button icon="fullscreen" on-click="{{fullscreen}}"></paper-icon-button>
+      </core-tooltip>
     </div>
     <core-signals on-core-signal-play="{{play}}"></core-signals>
     <core-signals on-core-signal-pause="{{pause}}"></core-signals>
