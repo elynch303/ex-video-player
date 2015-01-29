@@ -14,6 +14,9 @@ Polymer('video-screen', {
     this.video.addEventListener("canplay", this.canplay.bind(this), true);
     this.video.addEventListener("volumechange", this.volumechange.bind(this), true);
     this.video.addEventListener("canplaythrough", this.canplaythrough.bind(this), true);
+    key('left', this.left.bind(this));
+    key('right', this.right.bind(this));
+    key('space', this.space.bind(this));
     this.onMutation(this, this.childrenUpdated);
   },
   childrenUpdated: function(observer, mutations) {
@@ -72,18 +75,16 @@ Polymer('video-screen', {
   canplaythrough: function() {
     this.hiddenWaitingScreen = true;
   },
-  left: function(e) {
-    if(e.detail.originalEvent.keyCode != 37) return;
+  left: function() {
     this.video.currentTime -= 5;
   },
-  right: function(e) {
-    if(e.detail.originalEvent.keyCode != 39) return;
+  right: function() {
     this.video.currentTime += 5;
   },
-  space: function(e) {
-    if(e.detail.originalEvent.keyCode != 32) return;
+  space: function() {
     if(this.hiddenPlayButton) this.pauseClick();
     else this.playClick();
+    return false;
   }
 });
 

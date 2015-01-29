@@ -46,11 +46,9 @@
     <core-signals on-core-signal-change="{{change}}"></core-signals>
     <core-signals on-core-signal-fullscreen="{{fullscreen}}"></core-signals>
     <core-signals on-core-signal-volume="{{volume}}"></core-signals>
-    <polymer-keydown code="37" on-keydown="{{left}}" />
-    <polymer-keydown code="39" on-keydown="{{right}}" />
-    <polymer-keydown code="32" on-keydown="{{space}}" />
   </template>
 
+  <script src="../keymaster/keymaster.js"></script>
   <script src="video-screen.html.0.js"></script>
 
 </polymer-element>
