@@ -21,9 +21,6 @@ Polymer('video-screen', {
     // Monitor again.
     this.onMutation(this, this.childrenUpdated);
   },
-  togglePlayButton: function () {
-    this.hiddenPlayButton = this.hiddenPlayButton ? true : false;
-  },
   playClick: function () {
     this.fire('core-signal', { name: "play" });
   },
@@ -74,6 +71,16 @@ Polymer('video-screen', {
   },
   canplaythrough: function() {
     this.hiddenWaitingScreen = true;
+  },
+  left: function(e) {
+    this.video.currentTime -= 5;
+  },
+  right: function(e) {
+    this.video.currentTime += 5;
+  },
+  space: function(e) {
+    if(this.hiddenPlayButton) this.pauseClick();
+    else this.playClick();
   }
 });
 
