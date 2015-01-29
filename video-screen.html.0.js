@@ -73,12 +73,15 @@ Polymer('video-screen', {
     this.hiddenWaitingScreen = true;
   },
   left: function(e) {
+    if(e.detail.originalEvent.keyCode != 37) return;
     this.video.currentTime -= 5;
   },
   right: function(e) {
+    if(e.detail.originalEvent.keyCode != 39) return;
     this.video.currentTime += 5;
   },
   space: function(e) {
+    if(e.detail.originalEvent.keyCode != 32) return;
     if(this.hiddenPlayButton) this.pauseClick();
     else this.playClick();
   }
