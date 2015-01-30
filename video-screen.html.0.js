@@ -60,15 +60,7 @@ Polymer('video-screen', {
     var time = this.video.duration * (detail / 100);
     this.video.currentTime = time;
   },
-  fullscreen: function() {
-    if (this.video.requestFullscreen) {
-      this.video.requestFullscreen();
-    } else if (this.video.mozRequestFullScreen) {
-      this.video.mozRequestFullScreen(); // Firefox
-    } else if (this.video.webkitRequestFullscreen) {
-      this.video.webkitRequestFullscreen(); // Chrome and Safari
-    }
-  },
+
   volume: function(e, detail, sender) {
     this.video.volume = detail
   },

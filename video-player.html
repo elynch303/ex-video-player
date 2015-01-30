@@ -1,4 +1,5 @@
 <html><head><link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-signals/core-signals.html">
 
 <link rel="import" href="video-screen.html">
 <link rel="import" href="video-controls.html">
@@ -18,6 +19,7 @@
     </video-screen>
     <video-controls></video-controls>
     <content id="content" select="source"></content>
+    <core-signals on-core-signal-fullscreen="{{fullscreen}}"></core-signals>
   </template>
 
   <script src="video-player.html.0.js"></script>
