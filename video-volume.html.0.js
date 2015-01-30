@@ -3,7 +3,7 @@ Polymer('video-volume', {
     this.addEventListener('mousewheel', this.mousewheel);
   },
   load: function() {
-    this.volume = this.volume || 0;
+    this.volume = this.volume || 100;
   },
   toggle: function() {
     this.$.dropdown.toggle();

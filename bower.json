@@ -18,6 +18,6 @@
     "paper-fab": "Polymer/paper-fab#master",
     "core-tooltip": "Polymer/core-tooltip#master",
     "paper-spinner": "Polymer/paper-spinner#master",
-    "keymaster": "madrobby/keymaster#master"
+    "core-a11y-keys": "Polymer/core-a11y-keys#master"
   }
 }
