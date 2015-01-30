@@ -14,9 +14,7 @@ Polymer('video-screen', {
     this.video.addEventListener("canplay", this.canplay.bind(this), true);
     this.video.addEventListener("volumechange", this.volumechange.bind(this), true);
     this.video.addEventListener("canplaythrough", this.canplaythrough.bind(this), true);
-    key('left', this.left.bind(this));
-    key('right', this.right.bind(this));
-    key('space', this.space.bind(this));
+
     this.onMutation(this, this.childrenUpdated);
   },
   childrenUpdated: function(observer, mutations) {

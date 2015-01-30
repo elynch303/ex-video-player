@@ -1,5 +1,6 @@
 <html><head><link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../core-signals/core-signals.html">
+<link rel="import" href="../core-a11y-keys/core-a11y-keys.html">
 
 <link rel="import" href="video-play-button.html">
 <link rel="import" href="video-waiting-screen.html">
@@ -45,9 +46,11 @@
     <core-signals on-core-signal-change="{{change}}"></core-signals>
     <core-signals on-core-signal-fullscreen="{{fullscreen}}"></core-signals>
     <core-signals on-core-signal-volume="{{volume}}"></core-signals>
+    <core-a11y-keys target="{{ownerDocument}}" keys="left" on-keys-pressed="{{left}}"></core-a11y-keys>
+    <core-a11y-keys target="{{ownerDocument}}" keys="right" on-keys-pressed="{{right}}"></core-a11y-keys>
+    <core-a11y-keys target="{{ownerDocument}}" keys="space" on-keys-pressed="{{space}}"></core-a11y-keys>
   </template>
 
-  <script src="../keymaster/keymaster.js"></script>
   <script src="video-screen.html.0.js"></script>
 
 </polymer-element>
