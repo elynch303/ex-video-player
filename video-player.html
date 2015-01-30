@@ -11,13 +11,19 @@
       :host {
         display: inline-block;
       }
+      :host > video-controls[fullscreen] {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+      }
     </style>
-    <video-screen>
+    <video-screen id="screen">
       <template repeat="{{item in sources}}">
         <source src="{{item.src}}" type="{{item.type}}">
       </template>
     </video-screen>
-    <video-controls></video-controls>
+    <video-controls fullscreen?="{{fullscreenToggle}}"></video-controls>
     <content id="content" select="source"></content>
     <core-signals on-core-signal-fullscreen="{{fullscreen}}"></core-signals>
   </template>
