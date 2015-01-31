@@ -17,9 +17,9 @@ View: http://rayros.github.io/play_ground/build/video-player.html
 </html>
 ```
 
-control key shortcuts
+## Control key shortcuts
 
-f: fullscreen
-space: play/pause
-left arrow: desc current time
-right arrow: inc current time
+- `f`: fullscreen
+- `space`: play/pause
+- `left arrow`: desc current time
+- `right arrow`: inc current time
