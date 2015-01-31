@@ -18,7 +18,7 @@ Polymer('video-player', {
   fullscreenChangeEvent: function() { this.fullscreen = this.fullscreen ? false : true; },
   fullscreenChanged: function (oldValue, newValue) {
     this.$.screen.style.width = newValue ? window.innerWidth  + "px" : this.initScreenWidth;
-    this.$.screen.style.height = newValue ? window.innerHeight  + "px" : this.initScreenHeight;
+    this.$.screen.style.height = newValue ? window.outerHeight  + "px" : this.initScreenHeight;
     if(newValue) {
       this.timeout = setTimeout(this.hideControls.bind(this), 3000);
     } else {
