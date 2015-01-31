@@ -1,10 +1,11 @@
 <html><head><link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../core-signals/core-signals.html">
+<link rel="import" href="../core-a11y-keys/core-a11y-keys.html">
 
 <link rel="import" href="video-screen.html">
 <link rel="import" href="video-controls.html">
 
-</head><body><polymer-element name="video-player">
+</head><body><polymer-element name="video-player" on-mousemove="{{mouseMoved}}">
 
   <template>
     <style>
@@ -23,9 +24,10 @@
         <source src="{{item.src}}" type="{{item.type}}">
       </template>
     </video-screen>
-    <video-controls fullscreen?="{{fullscreenToggle}}"></video-controls>
+    <video-controls id="controls" fullscreen?="{{fullscreen}}"></video-controls>
     <content id="content" select="source"></content>
-    <core-signals on-core-signal-fullscreen="{{fullscreen}}"></core-signals>
+    <core-signals on-core-signal-fullscreen="{{fullscreenHandler}}"></core-signals>
+    <core-a11y-keys target="{{ownerDocument}}" keys="f" on-keys-pressed="{{fullscreenHandler}}"></core-a11y-keys>
   </template>
 
   <script src="video-player.html.0.js"></script>

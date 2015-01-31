@@ -16,3 +16,10 @@ View: http://rayros.github.io/play_ground/build/video-player.html
 </body>
 </html>
 ```
+
+control key shortcuts
+
+f: fullscreen
+space: play/pause
+left arrow: desc current time
+right arrow: inc current time
