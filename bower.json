@@ -1,11 +1,18 @@
 {
   "name": "video-player",
-  "description": "",
+  "description": "Video player",
   "homepage": "https://github.com/rayros/video-player",
   "keywords": [
+    "video",
+    "polymer",
+    "web-components",
+    "web-component"
   ],
+  "ignore": [
+    "bower_components"
+  ],
+  "main": "video-player.html",
   "author": "Paweł Łaski <zniwus@gmail.com>",
-  "private": true,
   "dependencies": {
     "webcomponentsjs": "webcomponents/webcomponentsjs#master",
     "polymer": "Polymer/polymer#latest",
