@@ -1,8 +1,6 @@
 Polymer('video-player', {
   sources: [],
   fullscreen: false,
-  initScreenWidth: null,
-  initScreenHeight: null,
   timeout: null,
   ready: function() {
     this.sources = [].slice.call(this.$.content.getDistributedNodes());
@@ -11,14 +9,8 @@ Polymer('video-player', {
     document.addEventListener('mozfullscreenchange', this.fullscreenChangeEvent.bind(this), false);
     document.addEventListener('fullscreenchange', this.fullscreenChangeEvent.bind(this), false);
   },
-  domReady: function() {
-    this.initScreenWidth = this.$.screen.style.width;
-    this.initScreenHeight = this.$.screen.style.height;
-  },
   fullscreenChangeEvent: function() { this.fullscreen = this.fullscreen ? false : true; },
   fullscreenChanged: function (oldValue, newValue) {
-    this.$.screen.style.width = newValue ? window.innerWidth  + "px" : this.initScreenWidth;
-    this.$.screen.style.height = newValue ? window.outerHeight  + "px" : this.initScreenHeight;
     if(newValue) {
       this.timeout = setTimeout(this.hideControls.bind(this), 3000);
     } else {
