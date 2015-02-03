@@ -37,7 +37,7 @@ Polymer('video-screen', {
     this.fire('core-signal', { name: 'timeupdate', data: value });
   },
   progress: function() {
-    if(this.video.readyState == 4) this.hiddenWaitingScreen = true; else this.hiddenWaitingScreen = false;
+    this.hiddenWaitingScreen = this.video.readyState == 4 ? true : false;
     if(this.video.duration <= 0 || this.video.buffered.length == 0) return;
     var buffered_end = this.video.buffered.end(this.video.buffered.length - 1);
     var progress_amount = (buffered_end / this.video.duration) * 100;
@@ -58,22 +58,18 @@ Polymer('video-screen', {
     var time = this.video.duration * (detail / 100);
     this.video.currentTime = time;
   },
-
   volume: function(e, detail, sender) {
     this.video.volume = detail
   },
   canplaythrough: function() {
     this.hiddenWaitingScreen = true;
   },
-  left: function() {
-    this.video.currentTime -= 5;
-  },
-  right: function() {
-    this.video.currentTime += 5;
-  },
-  space: function() {
-    if(this.hiddenPlayButton) this.pauseClick();
-    else this.playClick();
+  keyHandler: function(e, detail, sender) {
+    switch (detail.key) {
+      case 'left':  this.video.currentTime -= 5; break;
+      case 'right': this.video.currentTime += 5; break;
+      case 'space': this.hiddenPlayButton ? this.pauseClick() : this.playClick();
+    }
     return false;
   }
 });
