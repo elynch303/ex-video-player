@@ -1,4 +1,4 @@
-Polymer('video-player', {
+Polymer('ex-video-player', {
   sources: [],
   fullscreen: false,
   timeout: null,
