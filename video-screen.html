@@ -5,14 +5,13 @@
 <link rel="import" href="video-play-button.html">
 <link rel="import" href="video-waiting-screen.html">
 
-</head><body><polymer-element name="video-screen" on-screen-pause="{{pause}}" on-screen-fullscreen="{{fullscreen}}">
-
+</head><body><polymer-element name="video-screen">
   <template>
     <style>
       :host {
         display: block;
-        width: 320px;
-        height: 240px;
+        width: 100%;
+        height: 100%;
         position: relative;
       }
       :host > video {
