@@ -1,3 +1,4 @@
+"use strict";
 Polymer('video-screen', {
   hiddenPlayButton: false,
   hiddenWaitingScreen: true,
@@ -28,8 +29,8 @@ Polymer('video-screen', {
   pauseClick: function() {
     this.fire('core-signal', { name: "pause" });
   },
-  play: function() { this.video.play();  this.hiddenPlayButton = true; },
-  pause: function() { this.video.pause(); this.hiddenPlayButton = false; },
+  play: function() { this.video.play();  this.hiddenPlayButton = true; this.hiddenWaitingScreen = false; },
+  pause: function() { this.video.pause(); this.hiddenPlayButton = false; this.hiddenWaitingScreen = true; },
   ended: function() { this.hiddenPlayButton = false; },
   timeupdate: function() {
     if(this.video.duration <= 0) return;
