@@ -23,3 +23,5 @@ View: http://rayros.github.io/play_ground/build/ex-video-player.html
 - `space`: play/pause
 - `left arrow`: desc current time
 - `right arrow`: inc current time
+
+License: http://www.gnu.org/licenses/gpl-3.0.txt

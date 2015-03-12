@@ -13,6 +13,7 @@
   ],
   "main": "ex-video-player.html",
   "author": "Paweł Łaski <zniwus@gmail.com>",
+  "license": "GPL-3.0",
   "dependencies": {
     "webcomponentsjs": "webcomponents/webcomponentsjs#master",
     "polymer": "Polymer/polymer#latest",
