@@ -1,4 +1,3 @@
-"use strict";
 Polymer('video-screen', {
   hiddenPlayButton: false,
   hiddenWaitingScreen: true,
@@ -29,8 +28,16 @@ Polymer('video-screen', {
   pauseClick: function() {
     this.fire('core-signal', { name: "pause" });
   },
-  play: function() { this.video.play();  this.hiddenPlayButton = true; this.hiddenWaitingScreen = false; },
-  pause: function() { this.video.pause(); this.hiddenPlayButton = false; this.hiddenWaitingScreen = true; },
+  play: function() {
+    this.video.play();
+    this.hiddenPlayButton = true;
+    this.hiddenWaitingScreen = false;
+  },
+  pause: function() {
+    this.video.pause();
+    this.hiddenPlayButton = false;
+    this.hiddenWaitingScreen = true;
+  },
   ended: function() { this.hiddenPlayButton = false; },
   timeupdate: function() {
     if(this.video.duration <= 0) return;
@@ -39,7 +46,7 @@ Polymer('video-screen', {
   },
   progress: function() {
     this.hiddenWaitingScreen = this.video.readyState == 4 ? true : false;
-    if(this.video.duration <= 0 || this.video.buffered.length == 0) return;
+    if(this.video.duration <= 0 || this.video.buffered.length === 0) return;
     var buffered_end = this.video.buffered.end(this.video.buffered.length - 1);
     var progress_amount = (buffered_end / this.video.duration) * 100;
     this.fire('core-signal', { name: 'progress-amount', data: progress_amount });
@@ -56,11 +63,10 @@ Polymer('video-screen', {
   },
   change: function(e, detail, sender) {
     if(isNaN(this.video.duration)) return;
-    var time = this.video.duration * (detail / 100);
-    this.video.currentTime = time;
+    this.video.currentTime= this.video.duration * (detail / 100);
   },
   volume: function(e, detail, sender) {
-    this.video.volume = detail
+    this.video.volume = detail;
   },
   canplaythrough: function() {
     this.hiddenWaitingScreen = true;
@@ -69,9 +75,8 @@ Polymer('video-screen', {
     switch (detail.key) {
       case 'left':  this.video.currentTime -= 5; break;
       case 'right': this.video.currentTime += 5; break;
-      case 'space': this.hiddenPlayButton ? this.pauseClick() : this.playClick();
+      case 'space': (this.hiddenPlayButton ? this.pauseClick : this.playClick).bind(this)(); break;
     }
     return false;
   }
 });
-
