@@ -13,7 +13,8 @@ Polymer('video-screen', {
     this.video.addEventListener("progress", this.progress.bind(this), true);
     this.video.addEventListener("canplay", this.canplay.bind(this), true);
     this.video.addEventListener("volumechange", this.volumechange.bind(this), true);
-    this.video.addEventListener("canplaythrough", this.canplaythrough.bind(this), true);
+    this.video.addEventListener("waiting", this.waiting.bind(this), true);
+    this.video.addEventListener("playing", this.playing.bind(this), true);
 
     this.onMutation(this, this.childrenUpdated);
   },
@@ -31,12 +32,10 @@ Polymer('video-screen', {
   play: function() {
     this.video.play();
     this.hiddenPlayButton = true;
-    this.hiddenWaitingScreen = false;
   },
   pause: function() {
     this.video.pause();
     this.hiddenPlayButton = false;
-    this.hiddenWaitingScreen = true;
   },
   ended: function() { this.hiddenPlayButton = false; },
   timeupdate: function() {
@@ -44,8 +43,7 @@ Polymer('video-screen', {
     var value = (100 / this.video.duration) * this.video.currentTime;
     this.fire('core-signal', { name: 'timeupdate', data: value });
   },
-  progress: function() {
-    this.hiddenWaitingScreen = this.video.readyState == 4 ? true : false;
+  progress: function() {  
     if(this.video.duration <= 0 || this.video.buffered.length === 0) return;
     var buffered_end = this.video.buffered.end(this.video.buffered.length - 1);
     var progress_amount = (buffered_end / this.video.duration) * 100;
@@ -53,6 +51,12 @@ Polymer('video-screen', {
   },
   canplay: function() {
     this.fire('core-signal', { name: 'canplay' });
+  },
+  waiting: function() {
+    this.hiddenWaitingScreen = false;
+  },
+  playing: function() {
+    this.hiddenWaitingScreen = true;
   },
   volumechange: function() {
     if(this.video.muted) {
@@ -67,9 +71,6 @@ Polymer('video-screen', {
   },
   volume: function(e, detail, sender) {
     this.video.volume = detail;
-  },
-  canplaythrough: function() {
-    this.hiddenWaitingScreen = true;
   },
   keyHandler: function(e, detail, sender) {
     switch (detail.key) {

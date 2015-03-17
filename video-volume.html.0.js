@@ -19,7 +19,7 @@ Polymer('video-volume', {
   },
   volumeChanged: function() {
     this.$.slider.value = this.volume;
-    this.$.button.icon = this.volume == 0 ? "av:volume-mute" : "av:volume-up";
+    this.$.button.icon = this.volume === 0 ? "av:volume-mute" : "av:volume-up";
     this.fire('core-signal', { name: 'volume', data: (this.volume / 100) });
   },
   sliderChange: function(e, detail, sender) {

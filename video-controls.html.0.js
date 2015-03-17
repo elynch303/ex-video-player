@@ -1,7 +1,8 @@
 Polymer('video-controls', {
   togged: false,
   playClick: function() {
-    !this.togged ? this.fire('core-signal', { name: "play" }) : this.fire('core-signal', { name: "pause" });
+    if(!this.togged) this.fire('core-signal', { name: "play" });
+    else this.fire('core-signal', { name: "pause" });
   },
   sliderChange: function(e, detail, sender) {
     this.fire('core-signal', { name: 'change', data: sender.immediateValue });
