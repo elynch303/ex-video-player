@@ -4,9 +4,6 @@ Polymer('ex-video-player', {
   timeout: null,
   ready: function() {
     this.sources = [].slice.call(this.$.content.getDistributedNodes());
-
-    document.addEventListener('webkitfullscreenchange', this.fullscreenChangeEvent.bind(this), false);
-    document.addEventListener('mozfullscreenchange', this.fullscreenChangeEvent.bind(this), false);
     document.addEventListener('fullscreenchange', this.fullscreenChangeEvent.bind(this), false);
   },
   fullscreenChangeEvent: function() { this.fullscreen = this.fullscreen ? false : true; },
@@ -34,25 +31,7 @@ Polymer('ex-video-player', {
     }
   },
   fullscreenHandler: function() {
-    if (!document.fullscreenElement &&    // alternative standard method
-        !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) {
-      if (this.requestFullscreen) {
-        this.requestFullscreen();
-      } else if (this.mozRequestFullScreen) {
-        this.mozRequestFullScreen(); // Firefox
-      } else if (this.webkitRequestFullscreen) {
-        this.webkitRequestFullscreen(); // Chrome and Safari
-      }
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      }
-    }
+    if(document.fullscreenElement) document.exitFullscreen();
+    else this.requestFullscreen();
   }
 });

@@ -8,24 +8,22 @@
     "web-components",
     "web-component"
   ],
-  "ignore": [
-    "bower_components"
-  ],
   "main": "ex-video-player.html",
   "author": "Paweł Łaski <zniwus@gmail.com>",
   "license": "GPL-3.0",
   "dependencies": {
-    "webcomponentsjs": "webcomponents/webcomponentsjs#master",
-    "polymer": "Polymer/polymer#latest",
-    "paper-elements": "Polymer/paper-elements#latest",
-    "core-signals": "Polymer/core-signals#master",
-    "core-localstorage": "Polymer/core-localstorage#master",
-    "paper-icon-button": "Polymer/paper-icon-button#master",
-    "paper-slider": "Polymer/paper-slider#master",
-    "paper-dropdown": "Polymer/paper-dropdown#master",
-    "paper-fab": "Polymer/paper-fab#master",
-    "core-tooltip": "Polymer/core-tooltip#master",
-    "paper-spinner": "Polymer/paper-spinner#master",
-    "core-a11y-keys": "Polymer/core-a11y-keys#master"
+    "webcomponentsjs": "webcomponents/webcomponentsjs",
+    "polymer": "Polymer/polymer#0.5",
+    "paper-elements": "Polymer/paper-elements",
+    "core-signals": "Polymer/core-signals",
+    "core-localstorage": "Polymer/core-localstorage",
+    "paper-icon-button": "Polymer/paper-icon-button",
+    "paper-slider": "Polymer/paper-slider",
+    "paper-dropdown": "Polymer/paper-dropdown",
+    "paper-fab": "Polymer/paper-fab",
+    "core-tooltip": "Polymer/core-tooltip",
+    "paper-spinner": "Polymer/paper-spinner",
+    "core-a11y-keys": "Polymer/core-a11y-keys",
+    "fullscreen-api": "neovov/Fullscreen-API-Polyfill"
   }
 }
