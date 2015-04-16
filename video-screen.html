@@ -31,6 +31,9 @@
       :host > video-play-button {
         z-index: 2;
       }
+      video::-webkit-media-controls{
+      	display: none !importantss;
+      }
     </style>
     <video-play-button hidden?="{{hiddenPlayButton}}" on-click="{{playClick}}"></video-play-button>
     <video-waiting-screen hidden?="{{hiddenWaitingScreen}}"></video-waiting-screen>
